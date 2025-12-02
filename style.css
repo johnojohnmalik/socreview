@@ -1,0 +1,311 @@
+/* ===========================================
+   SOC Interview Prep - Minimal CSS
+   Fast-loading, mobile-first design
+   =========================================== */
+
+/* CSS Variables for theming */
+:root {
+    --bg: #0d1117;
+    --surface: #161b22;
+    --border: #30363d;
+    --text: #e6edf3;
+    --text-muted: #8b949e;
+    --accent: #58a6ff;
+    --accent-glow: rgba(88, 166, 255, 0.15);
+    --warning: #f0883e;
+    --success: #3fb950;
+    --radius: 8px;
+}
+
+/* Reset & Base */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    text-align: center;
+    padding: 2rem 1rem;
+    background: linear-gradient(180deg, var(--surface) 0%, var(--bg) 100%);
+    border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent), var(--success));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* Navigation Links */
+.nav-links {
+    margin-top: 1rem;
+}
+
+.nav-links a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    transition: all 0.2s;
+    display: inline-block;
+}
+
+.nav-links a:hover {
+    background: var(--accent);
+    color: var(--bg);
+}
+
+/* Search */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 1rem;
+    position: sticky;
+    top: 0;
+    background: var(--bg);
+    z-index: 100;
+}
+
+#search {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#search:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+#search::placeholder {
+    color: var(--text-muted);
+}
+
+/* Main Content */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* Cards */
+.card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-title {
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(90deg, var(--accent-glow), transparent);
+    border-bottom: 1px solid var(--border);
+    user-select: none;
+}
+
+.card-title::after {
+    content: '▼';
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    transition: transform 0.3s;
+}
+
+.card.collapsed .card-title::after {
+    transform: rotate(-90deg);
+}
+
+.card-content {
+    padding: 1rem;
+    max-height: 2000px;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.card.collapsed .card-content {
+    max-height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Hide filtered cards */
+.card.hidden {
+    display: none;
+}
+
+/* Lists */
+ul, ol {
+    padding-right: 1.5rem;
+    margin: 0.5rem 0;
+}
+
+li {
+    margin: 0.4rem 0;
+}
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 0.6rem;
+    border: 1px solid var(--border);
+    text-align: right;
+}
+
+th {
+    background: var(--bg);
+    color: var(--accent);
+    font-weight: 600;
+}
+
+/* Typography */
+h3 {
+    color: var(--accent);
+    font-size: 1rem;
+    margin: 1rem 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid var(--border);
+}
+
+h3:first-child {
+    margin-top: 0;
+}
+
+strong {
+    color: var(--text);
+}
+
+code {
+    background: var(--bg);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.9em;
+    color: var(--warning);
+}
+
+/* Note boxes */
+.note {
+    background: var(--accent-glow);
+    border-right: 3px solid var(--accent);
+    padding: 0.6rem 1rem;
+    margin: 1rem 0 0;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    margin-top: 2rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    main {
+        padding: 0.5rem;
+    }
+
+    .card-title {
+        padding: 0.8rem;
+        font-size: 1rem;
+    }
+
+    .card-content {
+        padding: 0.8rem;
+    }
+
+    table {
+        font-size: 0.8rem;
+    }
+
+    th, td {
+        padding: 0.4rem;
+    }
+}
+
+/* Print styles */
+@media print {
+    .search-container {
+        display: none;
+    }
+
+    .card {
+        break-inside: avoid;
+        border: 1px solid #ccc;
+    }
+
+    .card.collapsed .card-content {
+        max-height: none;
+        padding: 1rem;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+}
+
+/* Animation for search highlight */
+@keyframes highlight {
+    0% { background-color: var(--accent-glow); }
+    100% { background-color: transparent; }
+}
+
+.highlight {
+    animation: highlight 1s ease;
+}
+

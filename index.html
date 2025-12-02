@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOC Interview Prep</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🛡️ SOC Interview Prep</h1>
+        <p>Security Operations Center - מדריך הכנה לראיון</p>
+        <nav class="nav-links">
+            <a href="quiz.html">🎯 בחן את עצמך →</a>
+        </nav>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="חפש נושא..." autocomplete="off">
+    </div>
+
+    <!-- Topics Container -->
+    <main id="topics">
+
+        <!-- OWASP Top 10 -->
+        <article class="card" data-tags="owasp web security">
+            <h2 class="card-title">OWASP Top 10</h2>
+            <div class="card-content">
+                <ol>
+                    <li><strong>Broken Access Control</strong> - גישה לא מורשית למשאבים</li>
+                    <li><strong>Cryptographic Failures</strong> - כשלים בהצפנה</li>
+                    <li><strong>Injection</strong> - SQL, NoSQL, OS, LDAP injection</li>
+                    <li><strong>Insecure Design</strong> - תכנון לא מאובטח</li>
+                    <li><strong>Security Misconfiguration</strong> - הגדרות אבטחה שגויות</li>
+                    <li><strong>Vulnerable Components</strong> - רכיבים פגיעים</li>
+                    <li><strong>Auth Failures</strong> - כשלי אימות וזיהוי</li>
+                    <li><strong>Data Integrity Failures</strong> - כשלי שלמות נתונים</li>
+                    <li><strong>Logging Failures</strong> - כשלי לוגים וניטור</li>
+                    <li><strong>SSRF</strong> - Server-Side Request Forgery</li>
+                </ol>
+            </div>
+        </article>
+
+        <!-- Firewall vs WAF -->
+        <article class="card" data-tags="firewall waf network">
+            <h2 class="card-title">Firewall vs WAF - ההבדל</h2>
+            <div class="card-content">
+                <table>
+                    <tr><th>Firewall</th><th>WAF</th></tr>
+                    <tr><td>Layer 3-4 (Network/Transport)</td><td>Layer 7 (Application)</td></tr>
+                    <tr><td>בודק IP, Port, Protocol</td><td>בודק HTTP/HTTPS content</td></tr>
+                    <tr><td>חוסם לפי כללי רשת</td><td>חוסם SQL injection, XSS, CSRF</td></tr>
+                    <tr><td>מגן על תשתית הרשת</td><td>מגן על אפליקציות web</td></tr>
+                </table>
+                <p class="note">💡 WAF מבין את תוכן הבקשה, FW רק את הכותרות</p>
+            </div>
+        </article>
+
+        <!-- Kerberos -->
+        <article class="card" data-tags="kerberos ad authentication">
+            <h2 class="card-title">Kerberos - פרוטוקול AD</h2>
+            <div class="card-content">
+                <p><strong>פרוטוקול ברירת מחדל ל-Active Directory</strong></p>
+                <h3>תהליך האימות:</h3>
+                <ol>
+                    <li><strong>AS-REQ</strong> → User שולח בקשה ל-KDC</li>
+                    <li><strong>AS-REP</strong> → KDC מחזיר TGT (Ticket Granting Ticket)</li>
+                    <li><strong>TGS-REQ</strong> → User מבקש גישה לשירות עם TGT</li>
+                    <li><strong>TGS-REP</strong> → KDC מחזיר Service Ticket</li>
+                    <li><strong>AP-REQ</strong> → User מציג ticket לשירות</li>
+                    <li><strong>AP-REP</strong> → השירות מאשר גישה</li>
+                </ol>
+                <p class="note">🔑 Port: 88 (TCP/UDP)</p>
+            </div>
+        </article>
+
+        <!-- LDAP -->
+        <article class="card" data-tags="ldap ad directory">
+            <h2 class="card-title">LDAP</h2>
+            <div class="card-content">
+                <p><strong>Lightweight Directory Access Protocol</strong></p>
+                <ul>
+                    <li>פרוטוקול לגישה לשירותי directory</li>
+                    <li>Port 389 (LDAP) / 636 (LDAPS - מוצפן)</li>
+                    <li>משמש לשאילתות על users, groups, computers</li>
+                    <li>מבנה היררכי: DC → OU → Objects</li>
+                </ul>
+                <p class="note">⚠️ LDAP Injection - התקפה דרך input לא מסונן</p>
+            </div>
+        </article>
+
+        <!-- IOC -->
+        <article class="card" data-tags="ioc ioa threat">
+            <h2 class="card-title">IOC vs IOA</h2>
+            <div class="card-content">
+                <h3>IOC - Indicator of Compromise</h3>
+                <ul>
+                    <li>עדות לפריצה שכבר התרחשה</li>
+                    <li>דוגמאות: Hash זדוני, IP חשוד, domain מזיק</li>
+                    <li>רטרואקטיבי - מזהה אחרי האירוע</li>
+                </ul>
+                <h3>IOA - Indicator of Attack</h3>
+                <ul>
+                    <li>התנהגות שמעידה על תקיפה פעילה</li>
+                    <li>דוגמאות: ריבוי login failures, lateral movement</li>
+                    <li>פרואקטיבי - מזהה בזמן אמת</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- File Behavior Analysis -->
+        <article class="card" data-tags="malware analysis sandbox">
+            <h2 class="card-title">בדיקת התנהגות קובץ</h2>
+            <div class="card-content">
+                <h3>Static Analysis:</h3>
+                <ul>
+                    <li>בדיקת Hash (VirusTotal, etc.)</li>
+                    <li>ניתוח strings בקובץ</li>
+                    <li>בדיקת metadata וחתימות</li>
+                </ul>
+                <h3>Dynamic Analysis:</h3>
+                <ul>
+                    <li>הרצה ב-Sandbox (Any.run, Joe Sandbox)</li>
+                    <li>ניטור תקשורת רשת</li>
+                    <li>מעקב אחר שינויים ב-registry/files</li>
+                    <li>בדיקת processes שנוצרים</li>
+                </ul>
+                <p class="note">🔬 תמיד בסביבה מבודדת!</p>
+            </div>
+        </article>
+
+        <!-- DCSync -->
+        <article class="card" data-tags="dcsync attack ad">
+            <h2 class="card-title">DCSync Attack</h2>
+            <div class="card-content">
+                <p><strong>מה זה?</strong> תוקף מתחזה ל-DC ומבקש סנכרון סיסמאות</p>
+                <h3>🚨 חשוד במיוחד:</h3>
+                <ul>
+                    <li>DCSync לא בין Domain Controllers</li>
+                    <li>בשעות חריגות (23:00)</li>
+                    <li>ממחשב שאינו DC</li>
+                </ul>
+                <h3>Detection:</h3>
+                <ul>
+                    <li>Event ID 4662 - Directory Service Access</li>
+                    <li>חיפוש Replication rights מ-non-DC</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- LOLBins -->
+        <article class="card" data-tags="lolbins lolbas evasion">
+            <h2 class="card-title">LOLBins / LOLBas</h2>
+            <div class="card-content">
+                <p><strong>Living Off The Land Binaries</strong></p>
+                <p>כלים לגיטימיים של Windows שתוקפים מנצלים:</p>
+                <ul>
+                    <li><strong>PowerShell</strong> - הרצת סקריפטים, download & execute</li>
+                    <li><strong>certutil</strong> - הורדת קבצים, decode base64</li>
+                    <li><strong>WMI</strong> - הרצה מרחוק, persistence</li>
+                    <li><strong>mshta</strong> - הרצת HTA files</li>
+                    <li><strong>regsvr32</strong> - הרצת COM objects</li>
+                    <li><strong>rundll32</strong> - הרצת DLLs</li>
+                </ul>
+                <p class="note">🔗 lolbas-project.github.io</p>
+            </div>
+        </article>
+
+        <!-- SIEM Rules -->
+        <article class="card" data-tags="siem rules detection">
+            <h2 class="card-title">חוקי SIEM מומלצים</h2>
+            <div class="card-content">
+                <ul>
+                    <li>🔐 Multiple failed logins → Brute force</li>
+                    <li>👤 Admin login בשעות חריגות</li>
+                    <li>🌍 Login מ-GeoIP חריג</li>
+                    <li>📁 Mass file access/deletion</li>
+                    <li>🔄 DCSync from non-DC</li>
+                    <li>⬇️ certutil download activity</li>
+                    <li>💻 PowerShell encoded commands</li>
+                    <li>🔍 Port scanning activity</li>
+                    <li>🚪 Lateral movement patterns</li>
+                    <li>📧 Email forwarding rules created</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- SSRF -->
+        <article class="card" data-tags="ssrf web attack">
+            <h2 class="card-title">SSRF</h2>
+            <div class="card-content">
+                <p><strong>Server-Side Request Forgery</strong></p>
+                <p>תוקף גורם לשרת לשלוח בקשות בשמו</p>
+                <h3>סיכונים:</h3>
+                <ul>
+                    <li>גישה לשירותים פנימיים</li>
+                    <li>קריאת metadata (AWS 169.254.169.254)</li>
+                    <li>סריקת רשת פנימית</li>
+                    <li>עקיפת firewall</li>
+                </ul>
+                <h3>הגנה:</h3>
+                <ul>
+                    <li>Whitelist של URLs מותרים</li>
+                    <li>חסימת internal IPs</li>
+                    <li>אימות input</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Password Never Expires -->
+        <article class="card" data-tags="password security policy">
+            <h2 class="card-title">Password Never Expires</h2>
+            <div class="card-content">
+                <h3>למה בעייתי?</h3>
+                <ul>
+                    <li>⏰ יותר זמן לתוקף לפצח</li>
+                    <li>🔄 לא מאלץ שינוי אחרי דליפה</li>
+                    <li>📋 לרוב מעיד על service account לא מנוהל</li>
+                    <li>🎯 יעד מועדף לתוקפים</li>
+                </ul>
+                <h3>מתי לגיטימי?</h3>
+                <ul>
+                    <li>Service accounts עם סיסמאות חזקות מאוד</li>
+                    <li>Managed Service Accounts (gMSA)</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Phishing / Social Engineering -->
+        <article class="card" data-tags="phishing social engineering">
+            <h2 class="card-title">Phishing / Social Engineering</h2>
+            <div class="card-content">
+                <h3>סוגי פישינג:</h3>
+                <ul>
+                    <li><strong>Spear Phishing</strong> - ממוקד לאדם/ארגון</li>
+                    <li><strong>Whaling</strong> - מכוון להנהלה בכירה</li>
+                    <li><strong>Vishing</strong> - פישינג טלפוני</li>
+                    <li><strong>Smishing</strong> - פישינג ב-SMS</li>
+                </ul>
+                <h3>סימנים לזיהוי:</h3>
+                <ul>
+                    <li>דחיפות מוגזמת</li>
+                    <li>שגיאות כתיב/תחביר</li>
+                    <li>Domain דומה אך שונה</li>
+                    <li>בקשה למידע רגיש</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Email Security -->
+        <article class="card" data-tags="dmarc spf dkim email">
+            <h2 class="card-title">DMARC / SPF / DKIM</h2>
+            <div class="card-content">
+                <h3>SPF (Sender Policy Framework)</h3>
+                <p>DNS record שמגדיר אילו שרתים מורשים לשלוח מייל מהדומיין</p>
+                
+                <h3>DKIM (DomainKeys Identified Mail)</h3>
+                <p>חתימה דיגיטלית על המייל - מאמת שהמייל לא שונה</p>
+                
+                <h3>DMARC (Domain-based Message Auth)</h3>
+                <p>מדיניות שמגדירה מה לעשות אם SPF/DKIM נכשלים</p>
+                <ul>
+                    <li><strong>none</strong> - רק דיווח</li>
+                    <li><strong>quarantine</strong> - לספאם</li>
+                    <li><strong>reject</strong> - לדחות</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Port Scan -->
+        <article class="card" data-tags="port scan reconnaissance">
+            <h2 class="card-title">Port Scan</h2>
+            <div class="card-content">
+                <p><strong>שלב ראשון ב-reconnaissance</strong></p>
+                <h3>סוגים נפוצים:</h3>
+                <ul>
+                    <li><strong>TCP Connect</strong> - חיבור מלא</li>
+                    <li><strong>SYN Scan</strong> - חצי חיבור (stealth)</li>
+                    <li><strong>UDP Scan</strong> - לשירותי UDP</li>
+                    <li><strong>FIN/XMAS/NULL</strong> - עקיפת FW</li>
+                </ul>
+                <h3>Detection:</h3>
+                <ul>
+                    <li>הרבה SYN ללא ACK</li>
+                    <li>ניסיונות לפורטים סגורים רבים</li>
+                    <li>תבנית סריקה סדרתית</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Hash -->
+        <article class="card" data-tags="hash cryptography ioc">
+            <h2 class="card-title">Hash</h2>
+            <div class="card-content">
+                <p><strong>פונקציה חד-כיוונית ליצירת "טביעת אצבע"</strong></p>
+                <h3>שימושים באבטחה:</h3>
+                <ul>
+                    <li>זיהוי קבצים זדוניים (IOC)</li>
+                    <li>אימות שלמות קבצים</li>
+                    <li>אחסון סיסמאות</li>
+                </ul>
+                <h3>אלגוריתמים:</h3>
+                <ul>
+                    <li><strong>MD5</strong> - 128bit (לא מאובטח)</li>
+                    <li><strong>SHA-1</strong> - 160bit (לא מומלץ)</li>
+                    <li><strong>SHA-256</strong> - 256bit (מומלץ)</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- CVE -->
+        <article class="card" data-tags="cve vulnerability">
+            <h2 class="card-title">CVE</h2>
+            <div class="card-content">
+                <p><strong>Common Vulnerabilities and Exposures</strong></p>
+                <p>מזהה אוניברסלי לפגיעויות אבטחה</p>
+                <h3>מבנה:</h3>
+                <p><code>CVE-YYYY-NNNNN</code></p>
+                <ul>
+                    <li>YYYY - שנה</li>
+                    <li>NNNNN - מספר סידורי</li>
+                </ul>
+                <h3>CVSS Score:</h3>
+                <ul>
+                    <li>0.0-3.9 - Low</li>
+                    <li>4.0-6.9 - Medium</li>
+                    <li>7.0-8.9 - High</li>
+                    <li>9.0-10.0 - Critical</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Misconfiguration -->
+        <article class="card" data-tags="misconfiguration security">
+            <h2 class="card-title">Security Misconfiguration</h2>
+            <div class="card-content">
+                <h3>סוגים נפוצים:</h3>
+                <ul>
+                    <li>🔓 Default credentials לא שונו</li>
+                    <li>📂 Directory listing מופעל</li>
+                    <li>🛠️ Debug mode בפרודקשן</li>
+                    <li>☁️ S3 bucket ציבורי</li>
+                    <li>🔑 הרשאות יתר</li>
+                    <li>📡 פורטים מיותרים פתוחים</li>
+                    <li>🔒 הצפנה חלשה או חסרה</li>
+                    <li>📝 Error messages מפורטים מדי</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Night Shift Scenario -->
+        <article class="card" data-tags="scenario soc investigation">
+            <h2 class="card-title">🌙 תרחיש: Admin Login בלילה</h2>
+            <div class="card-content">
+                <p><strong>משמרת לילה - חיבור אדמין - מה תעשה?</strong></p>
+                <h3>בדיקות ראשוניות:</h3>
+                <ol>
+                    <li>האם יש תחזוקה מתוכננת?</li>
+                    <li>מאיפה החיבור? (IP, מכונה)</li>
+                    <li>האם ה-user אמיתי או service account?</li>
+                    <li>מה הפעולות שבוצעו?</li>
+                    <li>האם יש baseline לפעילות רגילה?</li>
+                </ol>
+                <h3>אם חשוד:</h3>
+                <ul>
+                    <li>📞 יצירת קשר עם המשתמש/מנהל</li>
+                    <li>🔒 שקול חסימת חשבון</li>
+                    <li>📊 בדיקת לוגים נוספים</li>
+                    <li>🎫 פתיחת ticket והסלמה</li>
+                </ul>
+            </div>
+        </article>
+
+        <!-- Suspicious Traffic Scenario -->
+        <article class="card" data-tags="scenario investigation traffic">
+            <h2 class="card-title">🔍 תרחיש: תקשורת חשודה</h2>
+            <div class="card-content">
+                <p><strong>קובץ לגיטימי שמבצע תקשורת לכתובת AWS נקייה</strong></p>
+                <h3>ניתוח:</h3>
+                <ol>
+                    <li>מה הקובץ עושה בדיוק?</li>
+                    <li>האם התקשורת צפויה לפי התיעוד?</li>
+                    <li>מתי התחילה התקשורת?</li>
+                    <li>מה נשלח/מתקבל?</li>
+                </ol>
+                <h3>נקודות למחשבה:</h3>
+                <ul>
+                    <li>🌩️ AWS IP יכול להיות C2 לגיטימי-למראה</li>
+                    <li>📦 Supply chain attack?</li>
+                    <li>🔄 DLL hijacking?</li>
+                    <li>⏰ Reputation לא עדכני</li>
+                </ul>
+                <p class="note">💡 "נקי" לא אומר "בטוח" - הקשר חשוב!</p>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>בהצלחה בראיון! 🚀</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOC Quiz - בחן את עצמך</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="quiz.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>🎯 SOC Interview Quiz</h1>
+        <p>בחן את עצמך - שאלות פתוחות ותרחישים</p>
+        <nav class="nav-links">
+            <a href="index.html">← חזרה למדריך</a>
+        </nav>
+    </header>
+
+    <!-- Quiz Controls -->
+    <div class="quiz-controls">
+        <div class="control-group">
+            <label>קטגוריה:</label>
+            <select id="category-filter">
+                <option value="all">הכל</option>
+                <option value="open">שאלות פתוחות</option>
+                <option value="scenario">תרחישים</option>
+                <option value="technical">טכני</option>
+                <option value="behavioral">התנהגותי</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <button id="random-btn" class="btn">🎲 שאלה אקראית</button>
+            <button id="reset-btn" class="btn btn-secondary">🔄 איפוס</button>
+        </div>
+        <div class="progress-info">
+            <span id="progress">0 / 0 נענו</span>
+        </div>
+    </div>
+
+    <!-- Quiz Container -->
+    <main id="quiz-container">
+        <!-- Questions will be injected here -->
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>💡 טיפ: ענה בקול רם כאילו אתה בראיון אמיתי</p>
+    </footer>
+
+    <script src="quiz.js"></script>
+</body>
+</html>
+
